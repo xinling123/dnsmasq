@@ -186,11 +186,11 @@ case $action in
             for domain in ${dns_domains[$selected_region]}; do
                 config_content+="server=/$domain/$dns_ip\n"
             done
-            if ! grep -q "no-resolv" /etc/dnsmasq.conf; then
+            if ! grep -q "no-resolv" /etc/dnsmasq.d/custom.conf; then
                 config_content+="no-resolv\n"
                 config_content+="log-queries\n"
                 config_content+="log-facility=/dev/null\n"
-                config_content+="cache-size=500\n"
+                config_content+="cache-size=1024\n"
             fi
 
             echo -e "$config_content" >> /etc/dnsmasq.d/custom.conf
